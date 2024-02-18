@@ -56,6 +56,7 @@ Add the folllowing code in the global custom code of the project:
       addScript(`Here goes the prod URL/home.js`)
     }
   }
+  
 </script>
 ```
 

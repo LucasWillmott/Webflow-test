@@ -1,5 +1,5 @@
-import glob from "glob";
-import path from "path";
+import glob from 'glob'
+import path from 'path'
 import { defineConfig } from 'vite'
 
 // vite.config.js
@@ -16,7 +16,7 @@ export default defineConfig({
     minify: true,
     manifest: true,
     rollupOptions: {
-      input:  glob.sync(path.resolve(__dirname, "src/pages", "*.js")),
+      input: glob.sync(path.resolve(__dirname, 'src/pages', '*.js')),
       output: {
         entryFileNames: '[name].js',
         esModule: false,
