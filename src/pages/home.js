@@ -1,3 +1,5 @@
+console.log('home')
+
 // Example of a page-specific script in pages/home.js
 document.addEventListener('DOMContentLoaded', (event) => {
   // Footer dynamic height landscape
