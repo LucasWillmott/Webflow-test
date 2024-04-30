@@ -23,8 +23,5 @@
     "extends": [
       "./node_modules/standard/eslintrc.json"
     ]
-  },
-  "dependencies": {
-    "gsap": "^3.12.5"
   }
 }
