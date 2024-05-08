@@ -1,20 +1,6 @@
-console.log('home')
-
 // Example of a page-specific script in pages/home.js
 document.addEventListener('DOMContentLoaded', (event) => {
   // Footer dynamic height landscape
-
-  document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) {
-      // Hide the animated element immediately when the tab comes back into focus
-      document.querySelector('.c-wrapper').style.opacity = 0
-
-      // Resume visibility after 3 seconds
-      setTimeout(() => {
-        document.querySelector('.c-wrapper').style.opacity = 1
-      }, 1000)
-    }
-  })
 
   if (window.matchMedia('(max-width: 991px)').matches) {
     const footerHeight = $('.c-footer').height()
@@ -322,21 +308,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
       await new Promise((resolve) => setTimeout(resolve, 5000))
       // finished...
       inProgress = false
-      if (heroInView) {
+      if (heroInView && document.visibilityState === 'visible') {
         myFunction()
       }
     }
 
+    // Inside the callback function for the Intersection Observer
     const callback = (entries) => {
       entries.forEach((entry) => {
         if (entry.target.id === 'home') {
           heroInView = entry.isIntersecting
-          if (!inProgress && heroInView) {
+          if (!inProgress && heroInView && document.visibilityState === 'visible') {
             myFunction()
           }
         }
       })
     }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && heroInView && !inProgress) {
+        myFunction()
+      }
+    })
 
     observer = new IntersectionObserver(callback)
     observer.observe(document.querySelector('#home'))
